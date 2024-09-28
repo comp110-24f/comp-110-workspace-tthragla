@@ -1,3 +1,5 @@
+"""This program tells you how much it will cost to have a tea party!"""
+
 __author__ = "730698509"
 
 
