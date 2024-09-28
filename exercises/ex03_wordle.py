@@ -8,8 +8,8 @@ __author__ = "730698509"
 # use f strings and if using a variable: {variable}
 def input_guess(secret_word_len: int) -> str:
     "input a five letter word"
-    guess = input(f" Enter a {secret_word_len} character word: ")
-    while len(guess) != 5:
+    guess = input(f"Enter a {secret_word_len} character word: ")
+    while len(guess) != secret_word_len:
         guess = input(f"That wasn't {secret_word_len} chars! Try Again: ")
     else:
         return guess
@@ -57,19 +57,20 @@ def emojified(guess: str, secret: str) -> str:
 # also keep track of guess, secret from emojified function
 # prompt user for guess using input guess to make sure it's correct len
 # after game loop print how many times it took them to win or prompt to try again
+# keep track of number of turns
 def main(secret: str) -> None:
     """The entrypoint of the program and main game loop."""
     turn: int = 0
     user_guess: str = ""
-    while turn < len(secret) and user_guess != secret:
-        print(f"=== Turn {turn + 1}/{len(secret)} === ")
+    while turn < 6 and user_guess != secret:
+        print(f"=== Turn {turn + 1}/6 === ")
         user_guess = input_guess(len(secret))
-        print(emojified(guess=user_guess, secret=secret))
+        print(emojified(user_guess, secret))
         turn += 1
     if user_guess == secret:
-        print(f"You won in {turn}/{len(secret)} turns! ")
+        print(f"You won in {turn}/6 turns! ")
     else:
-        print(f"X/{len(secret)} - Sorry, try again tomorrow!")
+        print("X/6 - Sorry, try again tomorrow!")
 
 
 if __name__ == "__main__":
